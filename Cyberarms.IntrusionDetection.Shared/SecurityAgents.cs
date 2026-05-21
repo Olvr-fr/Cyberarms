@@ -55,9 +55,8 @@ namespace Cyberarms.IntrusionDetection.Shared {
         public List<SecurityAgent> ReadAgentsFromDisk() {
             if (String.IsNullOrEmpty(IddsConfig.Instance.PluginsDirectory)) throw new ApplicationException("Application is not initialized.");
             List<SecurityAgent> result = new List<SecurityAgent>();
-            AppDomainSetup setup = AppDomain.CurrentDomain.SetupInformation;
-            System.Security.Policy.Evidence adevidence = AppDomain.CurrentDomain.Evidence;
-            CurrentDomain = AppDomain.CreateDomain("Cyberarms.Agents.Enumerator", adevidence, setup);
+            // .NET 8: AppDomain isolation removed; plugins load into the current domain
+            CurrentDomain = AppDomain.CurrentDomain;
             
             foreach (string fileName in Directory.EnumerateFiles(IddsConfig.Instance.PluginsDirectory, "*.dll")) {
                 if (!fileName.Contains(".Api.dll")) {
@@ -113,8 +112,6 @@ namespace Cyberarms.IntrusionDetection.Shared {
 
         public void UnloadAgents() {
             if (LoadedAgents == null) return;
-            AppDomainManager adm = new AppDomainManager();
-            
             foreach(SecurityAgent agent in LoadedAgents.Keys) {
                 AppDomain.Unload(agent.AppDomain);
             }
@@ -141,9 +138,8 @@ namespace Cyberarms.IntrusionDetection.Shared {
             foreach (SecurityAgent agent in this) {
                 if (agent.Enabled) {
                     try {
-                        AppDomainSetup setup = AppDomain.CurrentDomain.SetupInformation;
-                        System.Security.Policy.Evidence adevidence = AppDomain.CurrentDomain.Evidence;
-                        AppDomain domain = AppDomain.CreateDomain("Cyberarms.Agents." + agent.Id, adevidence, setup);
+                        // .NET 8: AppDomain isolation removed; agent runs in the current domain
+                        AppDomain domain = AppDomain.CurrentDomain;
                         AgentProxy proxy = new AgentProxy(agent.AssemblyFilename, agent.Name);
                         proxy.Configuration.AgentName = agent.Name;
                         proxy.Configuration.AssemblyName = agent.AssemblyName;
