@@ -26,12 +26,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelCurrentLocksGrid = new Cyberarms.IntrusionDetection.Admin.SmartPanel();
-            this.smartLabel7 = new Cyberarms.IntrusionDetection.Admin.SmartLabel();
-            this.smartLabel6 = new Cyberarms.IntrusionDetection.Admin.SmartLabel();
-            this.smartLabel5 = new Cyberarms.IntrusionDetection.Admin.SmartLabel();
-            this.smartLabel4 = new Cyberarms.IntrusionDetection.Admin.SmartLabel();
-            this.smartLabel2 = new Cyberarms.IntrusionDetection.Admin.SmartLabel();
             this.checkBoxSelectAllLocks = new System.Windows.Forms.CheckBox();
+            this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.dataGridViewLocks = new System.Windows.Forms.DataGridView();
             this.panelCurrentLocksMenu = new Cyberarms.IntrusionDetection.Admin.SmartPanel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -71,12 +67,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelCurrentLocksGrid.AutoScroll = true;
             this.panelCurrentLocksGrid.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.panelCurrentLocksGrid.Controls.Add(this.smartLabel7);
-            this.panelCurrentLocksGrid.Controls.Add(this.smartLabel6);
-            this.panelCurrentLocksGrid.Controls.Add(this.smartLabel5);
-            this.panelCurrentLocksGrid.Controls.Add(this.smartLabel4);
-            this.panelCurrentLocksGrid.Controls.Add(this.smartLabel2);
-            this.panelCurrentLocksGrid.Controls.Add(this.checkBoxSelectAllLocks);
             this.panelCurrentLocksGrid.Controls.Add(this.dataGridViewLocks);
             this.panelCurrentLocksGrid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.panelCurrentLocksGrid.Location = new System.Drawing.Point(24, 116);
@@ -85,81 +75,25 @@
             this.panelCurrentLocksGrid.PaintBorder = true;
             this.panelCurrentLocksGrid.Size = new System.Drawing.Size(810, 328);
             this.panelCurrentLocksGrid.TabIndex = 12;
-            // 
-            // smartLabel7
-            // 
-            this.smartLabel7.AutoSize = true;
-            this.smartLabel7.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold);
-            this.smartLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(159)))), ((int)(((byte)(227)))));
-            this.smartLabel7.Location = new System.Drawing.Point(631, 8);
-            this.smartLabel7.Name = "smartLabel7";
-            this.smartLabel7.Selected = false;
-            this.smartLabel7.SelectedColor = System.Drawing.Color.Empty;
-            this.smartLabel7.Size = new System.Drawing.Size(97, 13);
-            this.smartLabel7.TabIndex = 1;
-            this.smartLabel7.Text = "Automatic Unlock";
-            // 
-            // smartLabel6
-            // 
-            this.smartLabel6.AutoSize = true;
-            this.smartLabel6.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold);
-            this.smartLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(159)))), ((int)(((byte)(227)))));
-            this.smartLabel6.Location = new System.Drawing.Point(508, 8);
-            this.smartLabel6.Name = "smartLabel6";
-            this.smartLabel6.Selected = false;
-            this.smartLabel6.SelectedColor = System.Drawing.Color.Empty;
-            this.smartLabel6.Size = new System.Drawing.Size(71, 13);
-            this.smartLabel6.TabIndex = 1;
-            this.smartLabel6.Text = "Date of Lock";
-            // 
-            // smartLabel5
-            // 
-            this.smartLabel5.AutoSize = true;
-            this.smartLabel5.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold);
-            this.smartLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(159)))), ((int)(((byte)(227)))));
-            this.smartLabel5.Location = new System.Drawing.Point(230, 8);
-            this.smartLabel5.Name = "smartLabel5";
-            this.smartLabel5.Selected = false;
-            this.smartLabel5.SelectedColor = System.Drawing.Color.Empty;
-            this.smartLabel5.Size = new System.Drawing.Size(133, 13);
-            this.smartLabel5.TabIndex = 1;
-            this.smartLabel5.Text = "Agent / Attacked System";
-            // 
-            // smartLabel4
-            // 
-            this.smartLabel4.AutoSize = true;
-            this.smartLabel4.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold);
-            this.smartLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(159)))), ((int)(((byte)(227)))));
-            this.smartLabel4.Location = new System.Drawing.Point(130, 8);
-            this.smartLabel4.Name = "smartLabel4";
-            this.smartLabel4.Selected = false;
-            this.smartLabel4.SelectedColor = System.Drawing.Color.Empty;
-            this.smartLabel4.Size = new System.Drawing.Size(61, 13);
-            this.smartLabel4.TabIndex = 1;
-            this.smartLabel4.Text = "IP-Address";
-            // 
-            // smartLabel2
-            // 
-            this.smartLabel2.AutoSize = true;
-            this.smartLabel2.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold);
-            this.smartLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(159)))), ((int)(((byte)(227)))));
-            this.smartLabel2.Location = new System.Drawing.Point(29, 7);
-            this.smartLabel2.Name = "smartLabel2";
-            this.smartLabel2.Selected = false;
-            this.smartLabel2.SelectedColor = System.Drawing.Color.Empty;
-            this.smartLabel2.Size = new System.Drawing.Size(32, 13);
-            this.smartLabel2.TabIndex = 1;
-            this.smartLabel2.Text = "Type";
-            // 
+            //
             // checkBoxSelectAllLocks
-            // 
+            //
             this.checkBoxSelectAllLocks.AutoSize = true;
-            this.checkBoxSelectAllLocks.Location = new System.Drawing.Point(4, 7);
+            this.checkBoxSelectAllLocks.Location = new System.Drawing.Point(340, 12);
             this.checkBoxSelectAllLocks.Name = "checkBoxSelectAllLocks";
             this.checkBoxSelectAllLocks.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxSelectAllLocks.TabIndex = 0;
+            this.checkBoxSelectAllLocks.TabIndex = 10;
             this.checkBoxSelectAllLocks.UseVisualStyleBackColor = true;
             this.checkBoxSelectAllLocks.CheckedChanged += new System.EventHandler(this.checkBoxSelectAllLocks_CheckedChanged);
+            //
+            // textBoxSearch
+            //
+            this.textBoxSearch.Location = new System.Drawing.Point(364, 9);
+            this.textBoxSearch.Name = "textBoxSearch";
+            this.textBoxSearch.Size = new System.Drawing.Size(200, 20);
+            this.textBoxSearch.TabIndex = 11;
+            this.textBoxSearch.PlaceholderText = "Search by IP, agent or status…";
+            this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
             // 
             // dataGridViewLocks
             // 
@@ -183,7 +117,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewLocks.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewLocks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewLocks.ColumnHeadersVisible = false;
+            this.dataGridViewLocks.ColumnHeadersVisible = true;
             this.dataGridViewLocks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewSelectItem,
             this.dataGridViewColumnTypeIcon,
@@ -203,7 +137,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewLocks.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewLocks.GridColor = System.Drawing.SystemColors.Window;
-            this.dataGridViewLocks.Location = new System.Drawing.Point(4, 27);
+            this.dataGridViewLocks.Location = new System.Drawing.Point(4, 4);
             this.dataGridViewLocks.Name = "dataGridViewLocks";
             this.dataGridViewLocks.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridViewLocks.RowHeadersVisible = false;
@@ -212,8 +146,9 @@
             this.dataGridViewLocks.RowTemplate.ReadOnly = true;
             this.dataGridViewLocks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewLocks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewLocks.Size = new System.Drawing.Size(802, 297);
+            this.dataGridViewLocks.Size = new System.Drawing.Size(802, 320);
             this.dataGridViewLocks.TabIndex = 0;
+            this.dataGridViewLocks.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewLocks_ColumnHeaderMouseClick);
             // 
             // panelCurrentLocksMenu
             // 
@@ -223,6 +158,8 @@
             this.panelCurrentLocksMenu.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.panelCurrentLocksMenu.Controls.Add(this.panel3);
             this.panelCurrentLocksMenu.Controls.Add(this.panel2);
+            this.panelCurrentLocksMenu.Controls.Add(this.checkBoxSelectAllLocks);
+            this.panelCurrentLocksMenu.Controls.Add(this.textBoxSearch);
             this.panelCurrentLocksMenu.Location = new System.Drawing.Point(24, 78);
             this.panelCurrentLocksMenu.Name = "panelCurrentLocksMenu";
             this.panelCurrentLocksMenu.Padding = new System.Windows.Forms.Padding(1);
@@ -383,7 +320,7 @@
             this.dataGridViewColumnTypeName.Name = "dataGridViewColumnTypeName";
             this.dataGridViewColumnTypeName.ReadOnly = true;
             this.dataGridViewColumnTypeName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewColumnTypeName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewColumnTypeName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.dataGridViewColumnTypeName.Width = 90;
             // 
             // dataGridViewColumnIpAddress
@@ -392,7 +329,7 @@
             this.dataGridViewColumnIpAddress.Name = "dataGridViewColumnIpAddress";
             this.dataGridViewColumnIpAddress.ReadOnly = true;
             this.dataGridViewColumnIpAddress.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewColumnIpAddress.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewColumnIpAddress.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             // 
             // dataGridViewColumnAgent
             // 
@@ -400,7 +337,7 @@
             this.dataGridViewColumnAgent.Name = "dataGridViewColumnAgent";
             this.dataGridViewColumnAgent.ReadOnly = true;
             this.dataGridViewColumnAgent.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewColumnAgent.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewColumnAgent.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.dataGridViewColumnAgent.Width = 280;
             // 
             // dataGridViewColumnLockDate
@@ -409,7 +346,7 @@
             this.dataGridViewColumnLockDate.Name = "dataGridViewColumnLockDate";
             this.dataGridViewColumnLockDate.ReadOnly = true;
             this.dataGridViewColumnLockDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewColumnLockDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewColumnLockDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.dataGridViewColumnLockDate.Width = 120;
             // 
             // dataGridViewColumnUnlockDate
@@ -418,7 +355,7 @@
             this.dataGridViewColumnUnlockDate.Name = "dataGridViewColumnUnlockDate";
             this.dataGridViewColumnUnlockDate.ReadOnly = true;
             this.dataGridViewColumnUnlockDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewColumnUnlockDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewColumnUnlockDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.dataGridViewColumnUnlockDate.Width = 120;
             // 
             // LockId
@@ -466,12 +403,8 @@
         #endregion
 
         private SmartPanel panelCurrentLocksGrid;
-        private SmartLabel smartLabel7;
-        private SmartLabel smartLabel6;
-        private SmartLabel smartLabel5;
-        private SmartLabel smartLabel4;
-        private SmartLabel smartLabel2;
         private System.Windows.Forms.CheckBox checkBoxSelectAllLocks;
+        private System.Windows.Forms.TextBox textBoxSearch;
         private System.Windows.Forms.DataGridView dataGridViewLocks;
         private SmartPanel panelCurrentLocksMenu;
         private System.Windows.Forms.Panel panel3;
