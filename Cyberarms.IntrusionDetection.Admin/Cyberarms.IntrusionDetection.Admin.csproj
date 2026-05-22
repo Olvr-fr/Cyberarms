@@ -29,4 +29,47 @@
     <ProjectReference Include="..\Cyberarms.IntrusionDetection.Shared\Cyberarms.IntrusionDetection.Shared.csproj" />
   </ItemGroup>
 
+  <!-- Build agent plugins before Admin but do not reference their assemblies directly -->
+  <ItemGroup>
+    <ProjectReference Include="..\Cyberarms.Agents.Bind9\Cyberarms.Agents.Bind9.csproj"
+                      ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\Cyberarms.Agents.FileMaker\Cyberarms.Agents.FileMaker.csproj"
+                      ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\Cyberarms.Agents.FtpServer\Cyberarms.Agents.FtpServer.csproj"
+                      ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\Cyberarms.Agents.MailServer\Cyberarms.Agents.MailServer.csproj"
+                      ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\Cyberarms.Agents.MySql\Cyberarms.Agents.MySql.csproj"
+                      ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\Cyberarms.Agents.Smtp\Cyberarms.Agents.Smtp.csproj"
+                      ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\Cyberarms.Agents.SqlServer\Cyberarms.Agents.SqlServer.csproj"
+                      ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\Cyberarms.Agents.TerminalServer\Cyberarms.Agents.TerminalServer.csproj"
+                      ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\Cyberarms.Agents.WebSecurity\Cyberarms.Agents.WebSecurity.csproj"
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <!-- After build: copy each agent DLL to $(OutputPath)\Plugins\ so the Admin discovers them -->
+  <Target Name="CopyAgentsToPlugins" AfterTargets="Build">
+    <MakeDir Directories="$(OutputPath)Plugins" />
+    <ItemGroup>
+      <_AgentDll Include=
+        "..\Cyberarms.Agents.Bind9\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.Bind9.dll;
+         ..\Cyberarms.Agents.FileMaker\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.FileMaker.dll;
+         ..\Cyberarms.Agents.FtpServer\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.FtpServer.dll;
+         ..\Cyberarms.Agents.MailServer\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.MailServer.dll;
+         ..\Cyberarms.Agents.MySql\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.MySql.dll;
+         ..\Cyberarms.Agents.Smtp\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.Smtp.dll;
+         ..\Cyberarms.Agents.SqlServer\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.SqlServer.dll;
+         ..\Cyberarms.Agents.TerminalServer\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.TerminalServer.dll;
+         ..\Cyberarms.Agents.WebSecurity\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.WebSecurity.dll" />
+    </ItemGroup>
+    <Copy SourceFiles="@(_AgentDll)"
+          DestinationFolder="$(OutputPath)Plugins"
+          SkipUnchangedFiles="true"
+          ContinueOnError="true" />
+  </Target>
+
 </Project>

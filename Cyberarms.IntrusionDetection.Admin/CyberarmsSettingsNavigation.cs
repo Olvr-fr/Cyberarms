@@ -78,6 +78,7 @@ namespace Cyberarms.IntrusionDetection.Admin {
 
         public void Clear() {
             NavigationItems.Clear();
+            flowLayoutPanelNavigationItems.Controls.Clear();
         }
 
         

@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using Cyberarms.IntrusionDetection.Shared;
 using System.Diagnostics;
+using System.IO;
+using System.Security;
 
 namespace Cyberarms.IntrusionDetection.Admin {
     public partial class IddsAdmin : Form {
@@ -455,7 +457,9 @@ namespace Cyberarms.IntrusionDetection.Admin {
             } catch (Exception ex) {
                 GenericErrorDialog errdlg = new GenericErrorDialog("Error starting application", "The service is not installed or installed correctly. Please uninstall Cyberarms IDDS and reinstall to fix the problem!", false);
                 errdlg.ShowDialog();
-                EventLog.WriteEntry("Cyberarms.IntrusionDetection.Admin", ex.Message);
+                try { EventLog.WriteEntry("Cyberarms.IntrusionDetection.Admin", ex.Message); }
+                catch (SecurityException) { }
+                catch (IOException) { }
             }
             logReader = new Timer();
             logReader.Interval = 1000;

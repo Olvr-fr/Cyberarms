@@ -50,6 +50,20 @@ namespace Cyberarms.IntrusionDetection.Admin {
         // ── Constructor ──────────────────────────────────────────────────────────
         public CyberarmsCurrentLocks() {
             InitializeComponent();
+
+            // Dynamic column sizing — fill available width proportionally
+            dataGridViewLocks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewLocks.AllowUserToResizeColumns = true;
+            dataGridViewSelectItem.AutoSizeMode      = DataGridViewAutoSizeColumnMode.None;  // fixed checkbox
+            dataGridViewColumnTypeIcon.AutoSizeMode  = DataGridViewAutoSizeColumnMode.None;  // fixed icon
+            dataGridViewSelectItem.Width             = 20;
+            dataGridViewColumnTypeIcon.Width         = 20;
+            dataGridViewColumnTypeName.FillWeight    = 11f;
+            dataGridViewColumnIpAddress.FillWeight   = 15f;
+            dataGridViewColumnAgent.FillWeight       = 35f;
+            dataGridViewColumnLockDate.FillWeight    = 20f;
+            dataGridViewColumnUnlockDate.FillWeight  = 19f;
+
             dataGridViewLocks.AutoGenerateColumns = false;
             dataGridViewLocks.DataSource = LocksView;
             dataGridViewLocks.Columns["dataGridViewColumnTypeIcon"].DataPropertyName   = "Icon";

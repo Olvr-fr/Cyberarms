@@ -61,6 +61,18 @@ namespace Cyberarms.IntrusionDetection.Admin {
         // ── Constructor ──────────────────────────────────────────────────────────
         public CyberarmsSecurityLog() {
             InitializeComponent();
+
+            // Dynamic column sizing — fill available width proportionally
+            dataGridViewIntrusionLog.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewIntrusionLog.AllowUserToResizeColumns = true;
+            LogIcon.AutoSizeMode        = DataGridViewAutoSizeColumnMode.None;  // fixed icon column
+            LogIcon.Width               = 20;
+            LogType.FillWeight          = 9f;
+            LatestEntry.FillWeight      = 13f;
+            NumberOfEvents.FillWeight   = 9f;
+            IpAddress.FillWeight        = 13f;
+            Agent.FillWeight            = 56f;
+
             comboBoxAgentSelection.DisplayMember = "DisplayName";
             comboBoxAgentSelection.ValueMember   = "Id";
             comboBoxAgentSelection.DropDownStyle = ComboBoxStyle.DropDownList;
