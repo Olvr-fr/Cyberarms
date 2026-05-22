@@ -31,11 +31,7 @@
             this.labelFilter = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panelSecurityLogGridPanel = new Cyberarms.IntrusionDetection.Admin.SmartPanel();
-            this.smartLabelLatestEntry = new Cyberarms.IntrusionDetection.Admin.SmartLabel();
-            this.smartLabelMessage = new Cyberarms.IntrusionDetection.Admin.SmartLabel();
-            this.smartLabelNumberOfEvents = new Cyberarms.IntrusionDetection.Admin.SmartLabel();
-            this.smartLabelpAddress = new Cyberarms.IntrusionDetection.Admin.SmartLabel();
-            this.smartLabelType = new Cyberarms.IntrusionDetection.Admin.SmartLabel();
+            this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.dataGridViewIntrusionLog = new System.Windows.Forms.DataGridView();
             this.panelSecurityLogActionBar = new Cyberarms.IntrusionDetection.Admin.SmartPanel();
             this.comboBoxAgentSelection = new System.Windows.Forms.ComboBox();
@@ -114,11 +110,6 @@
             this.panelSecurityLogGridPanel.AutoScroll = true;
             this.panelSecurityLogGridPanel.BackColor = System.Drawing.SystemColors.Window;
             this.panelSecurityLogGridPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.panelSecurityLogGridPanel.Controls.Add(this.smartLabelLatestEntry);
-            this.panelSecurityLogGridPanel.Controls.Add(this.smartLabelMessage);
-            this.panelSecurityLogGridPanel.Controls.Add(this.smartLabelNumberOfEvents);
-            this.panelSecurityLogGridPanel.Controls.Add(this.smartLabelpAddress);
-            this.panelSecurityLogGridPanel.Controls.Add(this.smartLabelType);
             this.panelSecurityLogGridPanel.Controls.Add(this.dataGridViewIntrusionLog);
             this.panelSecurityLogGridPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.panelSecurityLogGridPanel.Location = new System.Drawing.Point(24, 116);
@@ -127,72 +118,16 @@
             this.panelSecurityLogGridPanel.PaintBorder = true;
             this.panelSecurityLogGridPanel.Size = new System.Drawing.Size(810, 328);
             this.panelSecurityLogGridPanel.TabIndex = 15;
-            // 
-            // smartLabelLatestEntry
-            // 
-            this.smartLabelLatestEntry.AutoSize = true;
-            this.smartLabelLatestEntry.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold);
-            this.smartLabelLatestEntry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(159)))), ((int)(((byte)(227)))));
-            this.smartLabelLatestEntry.Location = new System.Drawing.Point(116, 7);
-            this.smartLabelLatestEntry.Name = "smartLabelLatestEntry";
-            this.smartLabelLatestEntry.Selected = false;
-            this.smartLabelLatestEntry.SelectedColor = System.Drawing.Color.Empty;
-            this.smartLabelLatestEntry.Size = new System.Drawing.Size(66, 13);
-            this.smartLabelLatestEntry.TabIndex = 1;
-            this.smartLabelLatestEntry.Text = "Latest entry";
-            // 
-            // smartLabelMessage
-            // 
-            this.smartLabelMessage.AutoSize = true;
-            this.smartLabelMessage.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold);
-            this.smartLabelMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(159)))), ((int)(((byte)(227)))));
-            this.smartLabelMessage.Location = new System.Drawing.Point(441, 8);
-            this.smartLabelMessage.Name = "smartLabelMessage";
-            this.smartLabelMessage.Selected = false;
-            this.smartLabelMessage.SelectedColor = System.Drawing.Color.Empty;
-            this.smartLabelMessage.Size = new System.Drawing.Size(52, 13);
-            this.smartLabelMessage.TabIndex = 1;
-            this.smartLabelMessage.Text = "Message";
-            // 
-            // smartLabelNumberOfEvents
-            // 
-            this.smartLabelNumberOfEvents.AutoSize = true;
-            this.smartLabelNumberOfEvents.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold);
-            this.smartLabelNumberOfEvents.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(159)))), ((int)(((byte)(227)))));
-            this.smartLabelNumberOfEvents.Location = new System.Drawing.Point(235, 8);
-            this.smartLabelNumberOfEvents.Name = "smartLabelNumberOfEvents";
-            this.smartLabelNumberOfEvents.Selected = false;
-            this.smartLabelNumberOfEvents.SelectedColor = System.Drawing.Color.Empty;
-            this.smartLabelNumberOfEvents.Size = new System.Drawing.Size(76, 13);
-            this.smartLabelNumberOfEvents.TabIndex = 1;
-            this.smartLabelNumberOfEvents.Text = "# of incidents";
-            // 
-            // smartLabelpAddress
-            // 
-            this.smartLabelpAddress.AutoSize = true;
-            this.smartLabelpAddress.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold);
-            this.smartLabelpAddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(159)))), ((int)(((byte)(227)))));
-            this.smartLabelpAddress.Location = new System.Drawing.Point(341, 7);
-            this.smartLabelpAddress.Name = "smartLabelpAddress";
-            this.smartLabelpAddress.Selected = false;
-            this.smartLabelpAddress.SelectedColor = System.Drawing.Color.Empty;
-            this.smartLabelpAddress.Size = new System.Drawing.Size(59, 13);
-            this.smartLabelpAddress.TabIndex = 1;
-            this.smartLabelpAddress.Text = "IP address";
-            // 
-            // smartLabelType
-            // 
-            this.smartLabelType.AutoSize = true;
-            this.smartLabelType.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold);
-            this.smartLabelType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(159)))), ((int)(((byte)(227)))));
-            this.smartLabelType.Location = new System.Drawing.Point(9, 7);
-            this.smartLabelType.Name = "smartLabelType";
-            this.smartLabelType.Selected = false;
-            this.smartLabelType.SelectedColor = System.Drawing.Color.Empty;
-            this.smartLabelType.Size = new System.Drawing.Size(32, 13);
-            this.smartLabelType.TabIndex = 1;
-            this.smartLabelType.Text = "Type";
-            // 
+            //
+            // textBoxSearch
+            //
+            this.textBoxSearch.Location        = new System.Drawing.Point(643, 9);
+            this.textBoxSearch.Name            = "textBoxSearch";
+            this.textBoxSearch.Size            = new System.Drawing.Size(155, 20);
+            this.textBoxSearch.TabIndex        = 10;
+            this.textBoxSearch.PlaceholderText = "Search by IP, date, agent or message…";
+            this.textBoxSearch.TextChanged    += new System.EventHandler(this.textBoxSearch_TextChanged);
+            //
             // dataGridViewIntrusionLog
             // 
             this.dataGridViewIntrusionLog.AllowUserToAddRows = false;
@@ -215,7 +150,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewIntrusionLog.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewIntrusionLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewIntrusionLog.ColumnHeadersVisible = false;
+            this.dataGridViewIntrusionLog.ColumnHeadersVisible = true;
             this.dataGridViewIntrusionLog.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.LogIcon,
             this.LogType,
@@ -233,7 +168,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewIntrusionLog.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewIntrusionLog.GridColor = System.Drawing.SystemColors.Window;
-            this.dataGridViewIntrusionLog.Location = new System.Drawing.Point(1, 27);
+            this.dataGridViewIntrusionLog.Location = new System.Drawing.Point(1, 4);
             this.dataGridViewIntrusionLog.Name = "dataGridViewIntrusionLog";
             this.dataGridViewIntrusionLog.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridViewIntrusionLog.RowHeadersVisible = false;
@@ -242,9 +177,9 @@
             this.dataGridViewIntrusionLog.RowTemplate.ReadOnly = true;
             this.dataGridViewIntrusionLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewIntrusionLog.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewIntrusionLog.Size = new System.Drawing.Size(808, 300);
+            this.dataGridViewIntrusionLog.Size = new System.Drawing.Size(808, 320);
             this.dataGridViewIntrusionLog.TabIndex = 0;
-            this.dataGridViewIntrusionLog.Resize += new System.EventHandler(this.dataGridViewIntrusionLog_Resize);
+            this.dataGridViewIntrusionLog.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewIntrusionLog_ColumnHeaderMouseClick);
             // 
             // panelSecurityLogActionBar
             // 
@@ -257,6 +192,7 @@
             this.panelSecurityLogActionBar.Controls.Add(this.checkBoxHardLocks);
             this.panelSecurityLogActionBar.Controls.Add(this.checkBoxSoftLocks);
             this.panelSecurityLogActionBar.Controls.Add(this.checkBoxFailedLogins);
+            this.panelSecurityLogActionBar.Controls.Add(this.textBoxSearch);
             this.panelSecurityLogActionBar.Location = new System.Drawing.Point(24, 78);
             this.panelSecurityLogActionBar.Name = "panelSecurityLogActionBar";
             this.panelSecurityLogActionBar.PaintBorder = true;
@@ -365,22 +301,23 @@
             this.LogType.Name = "LogType";
             this.LogType.ReadOnly = true;
             this.LogType.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.LogType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.LogType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.LogType.Width = 90;
             // 
             // LatestEntry
             // 
-            this.LatestEntry.HeaderText = "LatestEntry";
+            this.LatestEntry.HeaderText = "Latest Entry";
             this.LatestEntry.Name = "LatestEntry";
             this.LatestEntry.ReadOnly = true;
             this.LatestEntry.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.LatestEntry.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.LatestEntry.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.LatestEntry.Width = 125;
             // 
             // NumberOfEvents
             // 
-            this.NumberOfEvents.HeaderText = "Number of Events";
+            this.NumberOfEvents.HeaderText = "# of Incidents";
             this.NumberOfEvents.Name = "NumberOfEvents";
+            this.NumberOfEvents.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             // 
             // IpAddress
             // 
@@ -388,7 +325,7 @@
             this.IpAddress.Name = "IpAddress";
             this.IpAddress.ReadOnly = true;
             this.IpAddress.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.IpAddress.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.IpAddress.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             // 
             // Agent
             // 
@@ -396,7 +333,7 @@
             this.Agent.Name = "Agent";
             this.Agent.ReadOnly = true;
             this.Agent.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Agent.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Agent.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.Agent.Width = 600;
             // 
             // AgentId
@@ -435,10 +372,7 @@
         #endregion
 
         private SmartPanel panelSecurityLogGridPanel;
-        private SmartLabel smartLabelLatestEntry;
-        private SmartLabel smartLabelMessage;
-        private SmartLabel smartLabelpAddress;
-        private SmartLabel smartLabelType;
+        private System.Windows.Forms.TextBox textBoxSearch;
         private System.Windows.Forms.DataGridView dataGridViewIntrusionLog;
         private SmartPanel panelSecurityLogActionBar;
         private System.Windows.Forms.Label label5;
@@ -452,7 +386,6 @@
         private System.Windows.Forms.CheckBox checkBoxHardLocks;
         private System.Windows.Forms.CheckBox checkBoxSoftLocks;
         private System.Windows.Forms.CheckBox checkBoxFailedLogins;
-        private SmartLabel smartLabelNumberOfEvents;
         private System.Windows.Forms.DataGridViewImageColumn LogIcon;
         private System.Windows.Forms.DataGridViewTextBoxColumn LogType;
         private System.Windows.Forms.DataGridViewTextBoxColumn LatestEntry;
