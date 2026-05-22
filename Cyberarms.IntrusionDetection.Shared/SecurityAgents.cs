@@ -58,7 +58,9 @@ namespace Cyberarms.IntrusionDetection.Shared {
             // .NET 8: AppDomain isolation removed; plugins load into the current domain
             CurrentDomain = AppDomain.CurrentDomain;
             
-            foreach (string fileName in Directory.EnumerateFiles(IddsConfig.Instance.PluginsDirectory, "*.dll")) {
+            string pluginsPath = IddsConfig.Instance.PluginsDirectory;
+            Directory.CreateDirectory(pluginsPath);
+            foreach (string fileName in Directory.EnumerateFiles(pluginsPath, "*.dll")) {
                 if (!fileName.Contains(".Api.dll")) {
                     Type tProxy = typeof(AgentLoaderProxy);
                     AgentLoaderProxy proxy = (AgentLoaderProxy)CurrentDomain.CreateInstanceAndUnwrap(
