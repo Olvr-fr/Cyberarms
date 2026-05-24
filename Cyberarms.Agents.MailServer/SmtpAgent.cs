@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 using Cyberarms.IntrusionDetection;
 using Cyberarms.IntrusionDetection.Api;
 using Cyberarms.IntrusionDetection.Api.Plugin;
@@ -10,7 +11,11 @@ using System.Net.Sockets;
 using System.Threading;
 
 namespace Cyberarms.Agents.MailServer {
-    public class SmtpAgent : Cyberarms.IntrusionDetection.Api.Plugin.AgentPlugin {
+    public class SmtpAgent : Cyberarms.IntrusionDetection.Api.Plugin.AgentPlugin, IExtendedInformation {
+        public string DisplayName    { get; set; } = "SMTP Mail Security Agent";
+        public Image  Icon           { get; set; }
+        public Image  SelectedIcon   { get; set; }
+        public Image  UnselectedIcon { get; set; }
         public event EventHandler Trace;
         public bool Tracing { get; set; }
         ThreadStart ts;

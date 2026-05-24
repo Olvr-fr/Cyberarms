@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 using Cyberarms.IntrusionDetection.Api.Plugin;
 using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 
 namespace Cyberarms.Agents.Bind9 {
-    public class Bind9DDoSKiller : AgentPlugin {
+    public class Bind9DDoSKiller : AgentPlugin, IExtendedInformation {
         
         private EventLogQuery query;
         private EventLogWatcher watcher;
@@ -21,9 +22,12 @@ namespace Cyberarms.Agents.Bind9 {
                   </Query>
                 </QueryList>";
 
-        /// <summary>
-        /// Initialize the Agent
-        /// </summary>
+        public string DisplayName    { get; set; } = "Bind9 Security Agent";
+        public Image  Icon           { get; set; }
+        public Image  SelectedIcon   { get; set; }
+        public Image  UnselectedIcon { get; set; }
+        public Guid   Id => new Guid("{A3F2C841-7B55-4E9D-BB1A-6D3C08F2E517}");
+
         public Bind9DDoSKiller() {
             this.Configuration = new Bind9DDoSConfig();
         }
