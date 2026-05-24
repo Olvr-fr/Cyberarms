@@ -72,4 +72,25 @@
           ContinueOnError="true" />
   </Target>
 
+  <!-- After publish: copy agent DLLs to $(PublishDir)\Plugins\ for the deployed executable -->
+  <Target Name="CopyAgentsToPublish" AfterTargets="Publish">
+    <MakeDir Directories="$(PublishDir)Plugins" />
+    <ItemGroup>
+      <_AgentDllPub Include=
+        "..\Cyberarms.Agents.Bind9\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.Bind9.dll;
+         ..\Cyberarms.Agents.FileMaker\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.FileMaker.dll;
+         ..\Cyberarms.Agents.FtpServer\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.FtpServer.dll;
+         ..\Cyberarms.Agents.MailServer\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.MailServer.dll;
+         ..\Cyberarms.Agents.MySql\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.MySql.dll;
+         ..\Cyberarms.Agents.Smtp\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.Smtp.dll;
+         ..\Cyberarms.Agents.SqlServer\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.SqlServer.dll;
+         ..\Cyberarms.Agents.TerminalServer\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.TerminalServer.dll;
+         ..\Cyberarms.Agents.WebSecurity\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.WebSecurity.dll" />
+    </ItemGroup>
+    <Copy SourceFiles="@(_AgentDllPub)"
+          DestinationFolder="$(PublishDir)Plugins"
+          SkipUnchangedFiles="true"
+          ContinueOnError="true" />
+  </Target>
+
 </Project>

@@ -183,12 +183,12 @@ namespace Cyberarms.IntrusionDetection.Admin {
         public bool ServiceError { get; set; }
 
         public void RefreshServiceStatus() {
-            serviceController.Refresh();
-            if (ServiceError) {
+            if (ServiceError || serviceController == null) {
                 smartLabelServiceStatus.Text = "Service not found!";
                 smartLabelServiceStatus.ForeColor = Color.FromArgb(225, 50, 50);
                 return;
             }
+            serviceController.Refresh();
             try {
                 if (serviceController.Status == System.ServiceProcess.ServiceControllerStatus.Running && !IsServiceRunning) {
                     IsServiceRunning = true;
@@ -455,8 +455,7 @@ namespace Cyberarms.IntrusionDetection.Admin {
                 serviceController = new System.ServiceProcess.ServiceController("Cyberarms Intrusion Detection Service");
                 IsServiceRunning = serviceController.Status != System.ServiceProcess.ServiceControllerStatus.Running;
             } catch (Exception ex) {
-                GenericErrorDialog errdlg = new GenericErrorDialog("Error starting application", "The service is not installed or installed correctly. Please uninstall Cyberarms IDDS and reinstall to fix the problem!", false);
-                errdlg.ShowDialog();
+                ServiceError = true;
                 try { EventLog.WriteEntry("Cyberarms.IntrusionDetection.Admin", ex.Message); }
                 catch (SecurityException) { }
                 catch (IOException) { }
