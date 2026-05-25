@@ -21,8 +21,9 @@ namespace Cyberarms.IntrusionDetection {
         }
 
         private FirewallPolicyManager() {
-            firewallPolicyManager = Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwPolicy2"));
-
+            Type fwType = Type.GetTypeFromProgID("HNetCfg.FwPolicy2");
+            if (fwType != null)
+                firewallPolicyManager = Activator.CreateInstance(fwType);
         }
 
         internal void Block(string ipAddress) {
@@ -31,7 +32,7 @@ namespace Cyberarms.IntrusionDetection {
                     NetFwTypeLib.NET_FW_RULE_DIRECTION_.NET_FW_RULE_DIR_IN, NetFwTypeLib.NET_FW_SCOPE_.NET_FW_SCOPE_CUSTOM,
                     NetFwTypeLib.NET_FW_ACTION_.NET_FW_ACTION_BLOCK, ipAddress);
             } catch (Exception ex) {
-                System.Diagnostics.EventLog.WriteEntry("Create Firewall Rule",ex.Message, System.Diagnostics.EventLogEntryType.Error);
+                try { System.Diagnostics.EventLog.WriteEntry("Create Firewall Rule", ex.Message, System.Diagnostics.EventLogEntryType.Error); } catch { }
             }
         }
 
@@ -40,7 +41,7 @@ namespace Cyberarms.IntrusionDetection {
                 dynamic rule = GetRule(GetRuleName("BlockAttacker", 0));
                 return rule.RemoteAddresses.Contains(ipAddress);
             } catch (Exception ex) {
-                System.Diagnostics.EventLog.WriteEntry("IsLocked encountered an error: ", ex.Message, System.Diagnostics.EventLogEntryType.Error);
+                try { System.Diagnostics.EventLog.WriteEntry("IsLocked encountered an error: ", ex.Message, System.Diagnostics.EventLogEntryType.Error); } catch { }
             }
             return false;
         }

@@ -20,7 +20,9 @@ namespace Cyberarms.IntrusionDetection {
         }
 
         private FirewallManager() {
-            firewallManager = Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwMgr"));
+            Type fwType = Type.GetTypeFromProgID("HNetCfg.FwMgr");
+            if (fwType != null)
+                firewallManager = Activator.CreateInstance(fwType);
         }
 
         internal void AddPort(string strName,

@@ -19,7 +19,6 @@ namespace Cyberarms.IntrusionDetection
         internal event EventHandler ClientIpAddressUnlocked;
         internal event EventHandler ClientIpAddressHardLocked;
 
-        delegate void StartServiceDelegate();
 
 
         // private LogAlerts logAlerts;
@@ -39,7 +38,7 @@ namespace Cyberarms.IntrusionDetection
             this.CanPauseAndContinue = true;
             this.AutoLog = false;
             this.CanShutdown = true;
-            this.EventLog.Source = Globals.APPLICATION_NAME;
+            try { this.EventLog.Source = Globals.APPLICATION_NAME; } catch { }
             this.ClientIpAddressSoftLocked += new EventHandler(Service_ClientIpAddressSoftLocked);
             this.ClientIpAddressUnlocked += new EventHandler(Service_ClientIpAddressUnlocked);
             this.ClientIpAddressHardLocked += new EventHandler(Service_ClientIpAddressHardLocked);
@@ -382,13 +381,7 @@ namespace Cyberarms.IntrusionDetection
 
         protected override void OnStart(string[] args)
         {
-            StartServiceDelegate serviceStarter = new StartServiceDelegate(StartService);
-            IAsyncResult result = serviceStarter.BeginInvoke(new AsyncCallback(StartServiceHandler), null);
-        }
-
-        void StartServiceHandler(IAsyncResult result)
-        {
-            // service started
+            System.Threading.Tasks.Task.Run(() => StartService());
         }
 
         void StartService()
@@ -407,6 +400,7 @@ namespace Cyberarms.IntrusionDetection
             }
             catch (Exception ex)
             {
+                Program.WriteCrashLog("StartService", ex);
                 WindowsLogManager.Instance.WriteEntry("Intrusion Detection Service had a startup error. Details:" + ex.Message, EventLogEntryType.Error,
     Globals.CYBERARMS_EVENT_ID_CONFIGURATION_ERROR, Globals.CYBERARMS_LOG_CATEGORY_RUNTIME);
             }

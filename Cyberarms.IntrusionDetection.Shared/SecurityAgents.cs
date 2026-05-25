@@ -115,13 +115,13 @@ namespace Cyberarms.IntrusionDetection.Shared {
         public void UnloadAgents() {
             if (LoadedAgents == null) return;
             foreach(SecurityAgent agent in LoadedAgents.Keys) {
-                AppDomain.Unload(agent.AppDomain);
+                // AppDomain.Unload is not supported in .NET 5+; agents share the current domain
             }
             LoadedAgents.Clear();
         }
 
         public void UnloadAgent(SecurityAgent agent) {
-            AppDomain.Unload(agent.AppDomain);
+            // AppDomain.Unload is not supported in .NET 5+; agents share the current domain
             if (LoadedAgents.ContainsKey(agent)) {
                 LoadedAgents[agent] = null;
                 LoadedAgents.Remove(agent);

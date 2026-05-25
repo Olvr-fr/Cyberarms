@@ -429,10 +429,28 @@ namespace Cyberarms.IntrusionDetection.Admin {
             InitAdmin();
         }
 
+        private static readonly string[] AgentDisplayOrder = new[] {
+            "AD Credential Validation Security Agent",
+            "Windows Base Security Agent",
+            "RRAS Security Agent - Routing and Remote Access",
+            "Kerberos pre-authentication Security Agent",
+            "TLS/SSL Security Agent",
+            "FileMaker Security Agent",
+            "FTP Security Agent",
+            "SMTP Security Agent",
+            "SQL Server Security Agent",
+        };
+
         public void InitAgentSettings() {
             Dashboard.ClearAgents();
             PanelAgentConfiguration.ClearSecurityAgents();
-            foreach (SecurityAgent agent in SecurityAgents.Instance) {
+            var ordered = SecurityAgents.Instance
+                .OrderBy(a => {
+                    int idx = Array.IndexOf(AgentDisplayOrder, a.DisplayName);
+                    return idx >= 0 ? idx : AgentDisplayOrder.Length;
+                })
+                .ThenBy(a => a.DisplayName);
+            foreach (SecurityAgent agent in ordered) {
                 Dashboard.AddAgent(agent);
                 PanelAgentConfiguration.LoadSecurityAgent(agent);
             }

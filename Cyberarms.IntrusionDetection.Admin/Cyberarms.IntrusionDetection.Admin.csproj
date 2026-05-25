@@ -37,8 +37,7 @@
                       ReferenceOutputAssembly="false" />
     <ProjectReference Include="..\Cyberarms.Agents.FtpServer\Cyberarms.Agents.FtpServer.csproj"
                       ReferenceOutputAssembly="false" />
-    <ProjectReference Include="..\Cyberarms.Agents.MailServer\Cyberarms.Agents.MailServer.csproj"
-                      ReferenceOutputAssembly="false" />
+
     <ProjectReference Include="..\Cyberarms.Agents.MySql\Cyberarms.Agents.MySql.csproj"
                       ReferenceOutputAssembly="false" />
     <ProjectReference Include="..\Cyberarms.Agents.Smtp\Cyberarms.Agents.Smtp.csproj"
@@ -48,6 +47,8 @@
     <ProjectReference Include="..\Cyberarms.Agents.TerminalServer\Cyberarms.Agents.TerminalServer.csproj"
                       ReferenceOutputAssembly="false" />
     <ProjectReference Include="..\Cyberarms.Agents.WebSecurity\Cyberarms.Agents.WebSecurity.csproj"
+                      ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\Cyberarms.IntrusionDetection.Base\Cyberarms.IntrusionDetection.Base.Plugins.csproj"
                       ReferenceOutputAssembly="false" />
   </ItemGroup>
 
@@ -59,12 +60,12 @@
         "..\Cyberarms.Agents.Bind9\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.Bind9.dll;
          ..\Cyberarms.Agents.FileMaker\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.FileMaker.dll;
          ..\Cyberarms.Agents.FtpServer\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.FtpServer.dll;
-         ..\Cyberarms.Agents.MailServer\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.MailServer.dll;
          ..\Cyberarms.Agents.MySql\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.MySql.dll;
          ..\Cyberarms.Agents.Smtp\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.Smtp.dll;
          ..\Cyberarms.Agents.SqlServer\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.SqlServer.dll;
          ..\Cyberarms.Agents.TerminalServer\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.TerminalServer.dll;
-         ..\Cyberarms.Agents.WebSecurity\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.WebSecurity.dll" />
+         ..\Cyberarms.Agents.WebSecurity\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.WebSecurity.dll;
+         ..\Cyberarms.IntrusionDetection.Base\bin\$(Configuration)\$(TargetFramework)\Cyberarms.IntrusionDetection.Base.Plugins.dll" />
     </ItemGroup>
     <Copy SourceFiles="@(_AgentDll)"
           DestinationFolder="$(OutputPath)Plugins"
@@ -72,25 +73,53 @@
           ContinueOnError="true" />
   </Target>
 
-  <!-- After publish: copy agent DLLs to $(PublishDir)\Plugins\ for the deployed executable -->
-  <Target Name="CopyAgentsToPublish" AfterTargets="Publish">
-    <MakeDir Directories="$(PublishDir)Plugins" />
-    <ItemGroup>
-      <_AgentDllPub Include=
-        "..\Cyberarms.Agents.Bind9\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.Bind9.dll;
-         ..\Cyberarms.Agents.FileMaker\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.FileMaker.dll;
-         ..\Cyberarms.Agents.FtpServer\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.FtpServer.dll;
-         ..\Cyberarms.Agents.MailServer\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.MailServer.dll;
-         ..\Cyberarms.Agents.MySql\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.MySql.dll;
-         ..\Cyberarms.Agents.Smtp\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.Smtp.dll;
-         ..\Cyberarms.Agents.SqlServer\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.SqlServer.dll;
-         ..\Cyberarms.Agents.TerminalServer\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.TerminalServer.dll;
-         ..\Cyberarms.Agents.WebSecurity\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.WebSecurity.dll" />
-    </ItemGroup>
-    <Copy SourceFiles="@(_AgentDllPub)"
-          DestinationFolder="$(PublishDir)Plugins"
-          SkipUnchangedFiles="true"
-          ContinueOnError="true" />
-  </Target>
+  <!-- Agent DLLs included via standard publish pipeline: CopyToPublishDirectory places them in Plugins\ -->
+  <ItemGroup>
+    <None Include="..\Cyberarms.Agents.Bind9\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.Bind9.dll">
+      <TargetPath>Plugins\Cyberarms.Agents.Bind9.dll</TargetPath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Include="..\Cyberarms.Agents.FileMaker\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.FileMaker.dll">
+      <TargetPath>Plugins\Cyberarms.Agents.FileMaker.dll</TargetPath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Include="..\Cyberarms.Agents.FtpServer\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.FtpServer.dll">
+      <TargetPath>Plugins\Cyberarms.Agents.FtpServer.dll</TargetPath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Include="..\Cyberarms.Agents.MySql\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.MySql.dll">
+      <TargetPath>Plugins\Cyberarms.Agents.MySql.dll</TargetPath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Include="..\Cyberarms.Agents.Smtp\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.Smtp.dll">
+      <TargetPath>Plugins\Cyberarms.Agents.Smtp.dll</TargetPath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Include="..\Cyberarms.Agents.SqlServer\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.SqlServer.dll">
+      <TargetPath>Plugins\Cyberarms.Agents.SqlServer.dll</TargetPath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Include="..\Cyberarms.Agents.TerminalServer\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.TerminalServer.dll">
+      <TargetPath>Plugins\Cyberarms.Agents.TerminalServer.dll</TargetPath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Include="..\Cyberarms.Agents.WebSecurity\bin\$(Configuration)\$(TargetFramework)\Cyberarms.Agents.WebSecurity.dll">
+      <TargetPath>Plugins\Cyberarms.Agents.WebSecurity.dll</TargetPath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Include="..\Cyberarms.IntrusionDetection.Base\bin\$(Configuration)\$(TargetFramework)\Cyberarms.IntrusionDetection.Base.Plugins.dll">
+      <TargetPath>Plugins\Cyberarms.IntrusionDetection.Base.Plugins.dll</TargetPath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
 
 </Project>

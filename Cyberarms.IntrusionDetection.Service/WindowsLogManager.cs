@@ -29,19 +29,15 @@ namespace Cyberarms.IntrusionDetection {
 
         
         internal void WriteEntry(string text, EventLogEntryType type, int eventId, short category) {
-            if (eventLogCyberarms == null) {
-                //if (!EventLog.Exists(Globals.CYBERARMS_WINDOWS_EVENT_LOG_NAME) || !EventLog.SourceExists(Globals.CYBERARMS_WINDOWS_EVENT_SOURCE)) {
-                //    // did somebody delete the eventlog with event viewer?
-                //    if (!EventLog.Exists(Globals.CYBERARMS_WINDOWS_EVENT_LOG_NAME) && EventLog.SourceExists(Globals.CYBERARMS_WINDOWS_EVENT_SOURCE)) {
-                //        // delete the source first
-                //        EventLog.DeleteEventSource(Globals.CYBERARMS_WINDOWS_EVENT_SOURCE);
-                //    }
-                //    EventLog.CreateEventSource(new EventSourceCreationData(Globals.CYBERARMS_WINDOWS_EVENT_SOURCE, Globals.CYBERARMS_WINDOWS_EVENT_LOG_NAME));
-                //}
-                eventLogCyberarms = new EventLog(Globals.CYBERARMS_WINDOWS_EVENT_LOG_NAME, ".", Globals.CYBERARMS_WINDOWS_EVENT_SOURCE);
-            }
+            try {
+                if (eventLogCyberarms == null)
+                    eventLogCyberarms = new EventLog(Globals.CYBERARMS_WINDOWS_EVENT_LOG_NAME, ".", Globals.CYBERARMS_WINDOWS_EVENT_SOURCE);
+                eventLogCyberarms.WriteEntry(text, type, eventId, category);
+            } catch { }
+        }
 
-            eventLogCyberarms.WriteEntry(text, type, eventId, category);
+        internal void WriteEntry(string text) {
+            WriteEntry(text, EventLogEntryType.Information, 0, 0);
         }
 
         
